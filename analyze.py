@@ -4,7 +4,7 @@ import numpy as np
 
 from csxnet.utilities import roots
 from csxnet.nputils import subsample, avg2pool
-from decompose import autoencode
+from csxnet.high_utils import autoencode
 
 
 datapath = roots["nir"]
@@ -31,7 +31,7 @@ def extract_data():
     header = extract_header(files)
     dataz = [array[1] for array in map(from_file_to_array, files)]
     dataz = np.vstack(dataz).astype("float64")
-    labels = [fl[:-39] for fl in files]
+    labels = [fl[:-43] for fl in files]
     if "fruits.txt" not in os.listdir("."):
         export_to_file("fruits.txt", dataz, labels, header, pkl=True)
     return dataz, labels, header
@@ -65,8 +65,5 @@ def do_pca(matrix):
 
 if __name__ == '__main__':
     data, labels, headers = extract_data()
-    subsampled = avg2pool(data)[..., :900]
-    subsampled = subsampled[..., ::2]
-    autoencoded = autoencode(subsampled, 5)
-    print(autoencoded.shape)
-    print("ASD")
+    autoencoded = autoencode(data, 30)
+    export_to_file("E:/tmp/autoencoded01.csv", autoencoded, labels, None)
