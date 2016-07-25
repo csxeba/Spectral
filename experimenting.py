@@ -28,4 +28,4 @@ def plot_sample(*samplenames):
 
 if __name__ == '__main__':
     plot_sample("294A_", "298D_")
-    plot3d(data[..., :3])
+    plot3d(data[..., 1:4])
