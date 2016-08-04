@@ -30,8 +30,3 @@ def merge_datapoint_files(rootdir):
     dataz = np.vstack(dataz).astype("float64")
     labels = [fl[:-43] for fl in files]
     return dataz, labels, header
-
-
-data, labels, headers = import_from_csv(roots["nir"] + "ntab.txt")
-ae = autoencode(data, 120)
-export_to_file(roots["tmp"] + "ntab_ae.csv", ae, labels=labels)
