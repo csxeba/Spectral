@@ -2,10 +2,6 @@ import os
 
 import numpy as np
 
-from csxnet.utilities import roots
-from csxnet.nputils import export_to_file, import_from_csv
-from csxnet.high_utils import autoencode
-
 
 def merge_datapoint_files(rootdir):
 
